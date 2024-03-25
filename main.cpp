@@ -6,9 +6,8 @@
 int main()
 {
 	lcdDisplay.init();
+	lcdDisplay.goTo(0, 0);
 	lcdDisplay.write('a');
-	lcdDisplay.goTo(1, 2);
-	lcdDisplay.write("Hello, world!");
 
 	while (true) {
 	}
