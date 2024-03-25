@@ -74,7 +74,15 @@ Uzupełnij metodę `LcdDisplay::init()`. Inicjalizuje ona szynę danych `bus`, a
 
 \awesomebox[teal]{2pt}{\faCode}{teal}{Ponieważ odmierzamy krótkie odcinki czasu i to tylko w momencie aktualizowania wyświetlacza, nieopłacalne jest implementowanie ich odmierzania za pomocą timera. Użyj funkcji \lstinline{_delay_us()} i \lstinline{_delay_ms()}.}
 
-Po dodaniu stosownych opóźnień, na wyświetlaczu będzie widoczna litera _a_ wypisana przez polecenie w funkcji `main()`:
+### Przesuwanie kursora
+
+Uzupełnij metodę `LcdDisplay::goTo(uint8_t line, uint8_t column)`, by przesunąć kursor na wyznaczoną pozycję za pomocą instrukcji _Set DDRAM address_, która ustawia adres pozycji w&nbsp;pamięci _Display Data_.
+
+\awesomebox[purple]{2pt}{\faMicrochip}{purple}{Niezależnie od fizycznej szerokości wyświetlacza pojedyncza linia ma długość 64 (\texttt{0x40}) znaków.}
+
+\awesomebox[teal]{2pt}{\faCode}{teal}{Kod instrukcji \textit{Set DDRAM addres} został zdefiniowany w pliku \texttt{lcdDisplayInstruction.hpp} jako \lstinline{SET_DDRAM_ADDRESS}.}
+
+Na tym etapie na wyświetlaczu będzie widoczna litera _a_ wypisana przez polecenie w funkcji `main()`:
 
 ```
 lcdDisplay.write('a');
@@ -86,14 +94,6 @@ lcdDisplay.write('a');
     ||
 \captionof{figure}{Stan wyświetlacza}
 \end{center}
-
-### Przesuwanie kursora
-
-Uzupełnij metodę `LcdDisplay::goTo(uint8_t line, uint8_t column)`, by przesunąć kursor na wyznaczoną pozycję za pomocą instrukcji _Set DDRAM address_, która ustawia adres pozycji w&nbsp;pamięci _Display Data_.
-
-\awesomebox[purple]{2pt}{\faMicrochip}{purple}{Niezależnie od fizycznej szerokości wyświetlacza pojedyncza linia ma długość 64 (\texttt{0x40}) znaków.}
-
-\awesomebox[teal]{2pt}{\faCode}{teal}{Kod instrukcji \textit{Set DDRAM addres} został zdefiniowany w pliku \texttt{lcdDisplayInstruction.hpp} jako \lstinline{SET_DDRAM_ADDRESS}.}
 
 Przesuń kursor na odpowiednią pozycję, dopisując w funkcji `main()`:
 
